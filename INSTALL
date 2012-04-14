@@ -1,0 +1,9 @@
+To compile:
+
+./configure
+make
+
+To install:
+make install
+
+
