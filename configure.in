@@ -19,39 +19,7 @@ dnl Check for compiler environment
 
 AC_C_CONST
 
-dnl Figure out which math library to use
-case "$target" in
-    *-*-cygwin* | *-*-mingw32*)
-        MATHLIB=""
-        SYS_GL_LIBS="-lopengl32"
-        ;;
-    *-*-beos*)
-        MATHLIB=""
-        SYS_GL_LIBS="-lGL"
-        ;;
-    *-*-darwin*)
-        MATHLIB=""
-        SYS_GL_LIBS=""
-        ;;
-    *-*-aix*)
-        if test x$ac_cv_prog_gcc = xyes; then
-            CFLAGS="-mthreads"
-	fi
-        SYS_GL_LIBS=""
-        ;;
-    *)
-        MATHLIB="-lm"
-        AC_PATH_X
-        AC_PATH_XTRA
-        if test x$have_x = xyes; then
-            CFLAGS="$CFLAGS $X_CFLAGS"
-            SYS_GL_LIBS="$X_LIBS -lGL"
-        else
-            SYS_GL_LIBS="-lGL"
-        fi
-        ;;
-esac
-AC_SUBST(MATHLIB)
+AC_CHECK_LIB(m,pow)
 
 dnl Check for SDL
 
