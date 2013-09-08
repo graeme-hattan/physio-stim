@@ -54,19 +54,6 @@ SDL_Surface *CreateScreen(Uint16 w, Uint16 h, Uint8 bpp, Uint32 flags)
 	  return(NULL);
 	}
 	fprintf(stderr, "Screen is in %s mode\n", (screen->flags & SDL_FULLSCREEN) ? "fullscreen" : "windowed");
-
-	if ( SDL_LockSurface(screen) < 0 ) {
-	  fprintf(stderr, "Couldn't lock display surface: %s\n",
-		  SDL_GetError());
-	  return(NULL);
-	}
-	fmt = screen->format;
-
-	SDL_FillRect(screen, NULL, SDL_MapRGB(fmt, back,back,back));
-	
-	SDL_UnlockSurface(screen);
-	SDL_UpdateRect(screen, 0, 0, 0, 0);
-
 	return(screen);
 }
 
